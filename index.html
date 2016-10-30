@@ -58,14 +58,14 @@
       <div class="container">
   
         <!-- Eliminamos por completo el elemento -->
-        <h1 v-if="nombre">Hola, {{ nombre }}</h1>
+        <h3 v-if="nombre">Hola, {{ nombre }}</h3>
   
         <!-- Oculatmos el elemento -->
-        <h1 v-show="nombre">Hola, {{ nombre }}</h1>
+        <h3 v-show="nombre">Hola, {{ nombre }}</h3>
 
         <span v-show="nombre">
           <!-- Oculatmos el elemento -->
-          <h1>Hola, {{ nombre }}</h1>
+          <h3>Hola, {{ nombre }}</h3>
           <p>Mostramos u ocultamos todo el span</p>
 
         </span>
@@ -73,26 +73,66 @@
         <!-- Solo para ocultar con directivas a varios elementos -->
         <template v-if="nombre">
           <!-- Oculatmos el elemento -->
-          <h1>Hola, {{ nombre }}</h1>
+          <h3>Hola, {{ nombre }}</h3>
           <p>Mostramos uo quitamos todo el span</p>
+
+          <h3>{{ genero == 'm' ? 'Bienvenido' : 'Bienvenida' }}, {{ nombre.split('').reverse().join('') }}</h3>
+          <p>Damos la vuelta a tu nombre</p>
 
         </template>
 
         <p v-else="nombre"> Por favor, introduce tu nombre</p>
 
-        <input type="text" v-model="nombre" name="" class="form-control">
+        <!-- <form method="get" accept-charset="utf-8"> -->
+        <form @submit.prevent="singUp(false)">
 
-<!-- Se puede ponerel if también así: v-if="!nombre" -->
+        
+          <input type="text" v-model="nombre" name="" class="form-control">
 
-        <p v-if="nombre == ''" class="alert alert-warning" role="alert">
-            <strong>Antención!</strong> Es encesario que introduzca su nombre.
-        </p>
-
-        <p v-if="nombre.length < 2" class="alert alert-warning" role="alert">
-            <strong>Antención!</strong> El nombre tiene que ser más largo.
-        </p>
+          <!-- Se puede ponerel if también así: v-if="!nombre" -->
+          <p v-if="nombre == ''" class="alert alert-warning" role="alert">
+              <strong>Antención!</strong> Es encesario que introduzca su nombre.
+          </p>
 
 
+          <p v-if="nombre.length < 2" class="alert alert-warning" role="alert">
+              <strong>Antención!</strong> El nombre tiene que ser más largo.
+          </p>
+            
+
+          <label>
+            Hombre <input type="radio" name="genero" v-model="genero" value="m" placeholder="">
+          </label>
+
+
+          <label>
+            Mujer <input type="radio" name="genero" v-model="genero" value="f" placeholder="">
+          </label>
+          
+          <hr>
+            
+            <p>¿Cuantos años de experiencia tienes en VUE.JS?</p>
+            <p>Tienes: {{ experiencia }}</p>
+
+            <button type="button" class="btn" @click="sumarExperiencia()"> + </button>
+            <button type="button" class="btn" @click="restarExperiencia()"> - </button>
+            <button type="button" class="btn" v-blind:disabled="experiencia == 0" @click="restarExperiencia()"> - sin IF</button>
+            <button type="button" class="btn" :disabled="experiencia == 0" @click="restarExperiencia()"> - sin v-blind</button>
+
+          
+          <hr>
+
+          <label v-show="nombre">
+            <button type="submit" class="btn btn-primary" v-on:click.prevent="singUp">Registrarse prevent</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="singUp">Registrarse @</button>
+            <button type="submit" class="btn btn-primary" v-on:click.stop="singUp">Registrarse stop</button>
+            <button type="submit" class="btn btn-primary">Registrarse sin v-on</button>
+            <button type="submit" class="btn btn-primary">Registrarse sin v-on</button>
+            <button type="submit" class="btn btn-primary" @click="singUp(true, $event)">Registrarse y salir</button>
+          </label>
+
+        </form>
+    
         <hr>
         <pre>
           {{ $data }}
@@ -120,6 +160,31 @@
       el: "#body",
       data:{
         nombre: "Alejandro Zorita",
+        genero: 'f',
+        experiencia: '0'
+      },
+      methods: {
+        singUp: function(logout, event)
+          {
+            event.preventDefault()
+          alert(this.nombre + ' gracias por registrarte');
+
+          if(logout)
+          {
+            alert('has hecho logout');
+          }
+        },
+        sumarExperiencia: function()
+          {
+            this.experiencia++;
+        },
+        restarExperiencia: function()
+          {
+          if(this.experiencia > 0)
+          {
+            this.experiencia--;
+          }
+        }
       }
     
     })
