@@ -1,4 +1,6 @@
-const vm = new Vue({
+
+Vue.config.devtools = true
+new Vue({
 
     el: 'main',
 

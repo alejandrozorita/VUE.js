@@ -5,4 +5,4 @@ const vm = new Vue({
     data:{
         nombre: 'Alejandro',
     }
-})
+});
