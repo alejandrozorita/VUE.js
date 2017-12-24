@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso VUE.js Alejandro Zorita</title>
+</head>
+<body>
+
+    <main>
+        <h2>{{ nombre }}, vamos a introducir tareas</h2>
+
+        <p>Añadimos el modelo al formulario y prevenimos el comportamiento</p>
+        <form v-on:submit.prevent="agregar_tarea">
+            <input type="text" placeholder="Introduce la tarea" v-model="nueva_tarea">
+            <input type="submit" value="Añadir tarea">
+        </form>
+
+        <p>En este caso, no lo metemos en un formulario</p>
+        <input type="text" placeholder="Introduce la tarea" v-model="nueva_tarea">
+        <input type="button" value="Añadir tarea" v-on:click="agregar_tarea">
+        <ul>
+            <li v-for="tarea in tareas">{{ tarea }}</li>
+        </ul>
+
+
+        <pre>{{ $data }}</pre>
+    </main>
+    
+</body>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+<script src="js/main.js"></script>
+</html>
