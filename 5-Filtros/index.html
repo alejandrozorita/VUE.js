@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso VUE.js Alejandro Zorita</title>
+</head>
+
+<body>
+
+    <main>
+
+        <input type="range" min="0" max="201" value="" v-model="minimo">
+
+        <ul>
+            <li v-for="tarea in tareas_antiguas">
+                {{ tarea.nombre }}
+            </li>
+        </ul>
+
+
+        <input type="search" value="" v-model="busqueda">
+
+        <ul>
+            <li v-for="tarea in buscar_tarea">
+                {{ tarea.nombre }}
+            </li>
+        </ul>
+
+        <pre>{{ $data }}</pre>
+    </main>
+
+</body>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+<script src="js/main.js"></script>
+
+</html>
