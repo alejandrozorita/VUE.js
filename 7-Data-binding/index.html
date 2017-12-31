@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso VUE.js Alejandro Zorita</title>
+
+    <style>
+        li {
+            cursor: pointer;
+        }
+        
+        .completado {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+
+        <h2>Tareas</h2>
+        <h3>Tareas comepltadas: {{ tareas_completadas.length }}</h3>
+
+        <ul>
+            <li @click="completarTarea(tarea)" v-for="tarea in tareas" v-bind:class="{completado: tarea.completado}">
+                {{ tarea.nombre }}
+            </li>
+        </ul>
+
+        <ul>
+            <li @click="completarTarea(tarea)" v-for="tarea in tareas" :class="{completado: tarea.completado}">
+                {{ tarea.nombre }}
+            </li>
+        </ul>
+
+
+        <pre>{{ $data }}</pre>
+    </main>
+
+</body>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+<script src="js/main.js"></script>
+
+</html>
