@@ -4,7 +4,12 @@ Vue.component('autor', {
         console.log(this.nombre);
         console.log(typeof this.edad);
     },
-    template:` <h1> {{ nombre }}</h1>`
+    template:`<div><h1> {{ nombre }}</h1><button @click='cambiarProp'>Cambiar Prop</Button></div>`,
+    methods: {
+        cambiarProp() {
+            this.nombre = this.nombre.toUpperCase();
+        }
+    }
 });
 const vm = new Vue({
 
