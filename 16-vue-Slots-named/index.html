@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curso VUE.js Alejandro Zorita</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+    <main>
+
+        <h2>Vue.JS Slots</h2>
+
+        <alerta tipo="alerta--exito" posicion="alerta--abajo-derecha">
+            <template slot="header">cabeza</template>  
+            <template>Nuevo contenido de la alerta</template>  
+            <template slot="footer">continua</template>  
+        </alerta>
+        <pre>{{ $data }}</pre>
+    </main>
+
+
+
+</body>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.js "></script>
+<script src="js/main.js "></script>
+
+</html>

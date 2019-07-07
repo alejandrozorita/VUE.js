@@ -14,9 +14,32 @@
 
         <h2>Vue.JS Components</h2>
 
-        <autor :nombre="autor"></autor>
+        <candidato v-for="candidato in candidatos"
+        :nombre="candidato.name.first"
+        :email="candidato.email" 
+        :imagen="candidato.picture.thumbnail"
+        :location="candidato.location">
+    </candidato>
         <pre>{{ $data }}</pre>
     </main>
+
+
+    <template id="candidato-template">
+        <div>
+            <blockquote>
+                <img :src="imagen" alt="">
+                <h1> {{ nombre }} </h1>
+                <h2> {{ email }} </h2>
+                <hr>
+
+                <ul>
+                    <li v-for="(value, key, index) in location">
+                        {{ value }}
+                    </li>
+                </ul>
+            </blockquote>
+        </div>
+    </template>
 
 </body>
 <script src="https://unpkg.com/vue@2.5.13/dist/vue.js "></script>
